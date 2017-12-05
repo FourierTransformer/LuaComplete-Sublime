@@ -1,0 +1,14 @@
+[
+  {
+    "caption": "LuaComplete: Clear AutoComplete Cache",
+    "command": "lc_clear_cache"
+  },
+  {
+    "caption": "LuaComplete: Start Server",
+    "command": "lc_start_server"
+  },
+  {
+    "caption": "LuaComplete: Stop Server",
+    "command": "lc_stop_server"
+  }
+]

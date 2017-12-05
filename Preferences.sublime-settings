@@ -1,0 +1,6 @@
+{
+    "auto_complete_triggers": [ 
+        {"selector": "source.lua", "characters": "\\."},
+        {"selector": "source.lua", "characters": ":"}
+    ]
+}
