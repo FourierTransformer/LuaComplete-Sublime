@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import sublime, sublime_plugin
 from subprocess import Popen, PIPE, call, STDOUT
 import sys, time
@@ -116,16 +114,19 @@ class LuaComplete(sublime_plugin.EventListener):
         stop_server()
 
 # start and stop are really only used for debug
-class LcStartServerCommand(sublime_plugin.ApplicationCommand):
-    def run(self):
-        start_server()
+# class StartServerCommand(sublime_plugin.ApplicationCommand):
+#     def run(self):
+#         start_server()
 
-class LcStopServerCommand(sublime_plugin.ApplicationCommand):
+# class StopServerCommand(sublime_plugin.ApplicationCommand):
+#     def run(self):
+#         stop_server()
+
+class ClearCacheCommand(sublime_plugin.ApplicationCommand):
     def run(self):
         stop_server()
-
-class LcClearCacheCommand(sublime_plugin.ApplicationCommand):
-    def run(self):
-        stop_server()
         start_server()
 
+def plugin_loaded():
+    global state
+    state["settings"] = sublime.load_settings("LuaComplete.sublime-settings")

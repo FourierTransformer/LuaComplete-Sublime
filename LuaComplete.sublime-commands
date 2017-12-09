@@ -1,14 +1,20 @@
 [
-  {
-    "caption": "LuaComplete: Clear AutoComplete Cache",
-    "command": "lc_clear_cache"
-  },
-  {
-    "caption": "LuaComplete: Start Server",
-    "command": "lc_start_server"
-  },
-  {
-    "caption": "LuaComplete: Stop Server",
-    "command": "lc_stop_server"
-  }
+    {
+        "caption": "LuaComplete: Clear AutoComplete Cache",
+        "command": "clear_cache"
+    },
+    {
+        "caption": "Preferences: LuaComplete Settings – Default",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/LuaComplete/LuaComplete.sublime-settings"
+        }
+    },
+    {
+        "caption": "Preferences: LuaComplete Settings – User",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/User/LuaComplete.sublime-settings"
+        }
+    }
 ]
