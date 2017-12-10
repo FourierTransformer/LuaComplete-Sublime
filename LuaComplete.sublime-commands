@@ -1,6 +1,6 @@
 [
     {
-        "caption": "LuaComplete: Clear AutoComplete Cache",
+        "caption": "LuaComplete: Clear AutoComplete Cache (Restart Server)",
         "command": "clear_cache"
     },
     {

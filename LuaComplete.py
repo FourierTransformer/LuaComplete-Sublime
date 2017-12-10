@@ -44,10 +44,10 @@ def stop_server():
 def create_completion(completion):
     (name, completion_type) = completion.split(":")
     completion_type = completion_type.strip()
-    completion_name = name
+    completion = name
     # add the '(' for functions!
     if completion_type.startswith("function"):
-        completion_name = name + "("
+        completion = name + "("
 
         # it's a Lua func and params have been found
         # if "|" in completion_type
@@ -57,18 +57,18 @@ def create_completion(completion):
             params = completion_type[11:].split()
 
             # set the completion type to just the start
-            completion_type = completion_type[0:9] + "(Lua)"
+            completion_type = completion_type[0:9] + "()"
 
             # figure this thing out
-            completion_name = completion_name + ", ".join([ "${{{num}:{name}}}".format(num=num+1, name=val) for (num, val) in enumerate(params)])
-            completion_name = completion_name + ")"
+            completion = completion + ", ".join([ "${{{num}:{name}}}".format(num=num+1, name=val) for (num, val) in enumerate(params)])
+            completion = completion + ")"
         
         # for c funcs, we can't do completion
         else:
-            completion_name = completion_name + "$1)"
+            completion = completion + "$1)"
 
 
-    return "{0}\t{1}".format(name, completion_type), completion_name
+    return "{0}\t{1}".format(name, completion_type), completion
 
 
 class LuaComplete(sublime_plugin.EventListener):    
@@ -136,7 +136,8 @@ class LuaComplete(sublime_plugin.EventListener):
                 return [ create_completion(x) for x in output ]
 
         else:
-            view.set_status("a", "lua-complete failed to return")
+            view.set_status("a", "The lua-complete client failed to return")
+            # potentially retry the command or restart the server if his happens.
 
     def __exit__(self, type, value, traceback):
         stop_server()

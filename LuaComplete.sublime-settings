@@ -14,6 +14,6 @@
   // open folder in the sublime text view for analysis
   // 
   // Additional include locations can be specified in a
-  // semi-colon delimited list below
+  // semi-colon delimited list below (be sure to comment out the line below)
   // "additional_includes": "/my/random/file/path;/another/path"
 }
