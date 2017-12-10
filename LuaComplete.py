@@ -97,9 +97,19 @@ class LuaComplete(sublime_plugin.EventListener):
         if file_name is not None:
             command = command + " -f '{0}'".format(file_name)
 
+        # get all the window vars
+        package_folders = []
         window_vars = view.window().extract_variables()
         if "folder" in window_vars:
-            command = command + " -r '{0}'".format(window_vars["folder"])
+            package_folders.append(window_vars["folder"])
+
+        if state["additional_includes"]:
+            package_folders.append(state["additional_includes"])
+
+        # did we find a folder to add?
+        if package_folders:
+            command = command + " -r '{0}'".format(';'.join(package_folders))
+
 
         # get the file contents
         file_contents = view.substr(sublime.Region(0, view.size())).encode('utf8')
@@ -151,8 +161,15 @@ def plugin_loaded():
 
     # strip out the path/port
     path = state["settings"].get("path")
+    if path is None:
+        path = "lua-complete"
     port = state["settings"].get("port")
+    if port is None:
+        port = 24548
 
     # setup the command.
     state["server_command"] = "{path} server -p {port}".format(path=path, port=port)
     state["client_command"] = "{path} client -p {port}".format(path=path, port=port)
+
+    # get any additional include locations
+    state["additional_includes"] = state["settings"].get("additional_includes")

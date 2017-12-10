@@ -4,5 +4,16 @@
   "path": "lua-complete",
 
   // Port to use for the lua-complete client and server
-  "port": 24548
+  "port": 24548,
+
+  // additional include location
+  // by default lua-complete will search lua's regular 
+  // installed module paths (packages.path)
+  // 
+  // The LuaComplete plugin will send the currently
+  // open folder in the sublime text view for analysis
+  // 
+  // Additional include locations can be specified in a
+  // semi-colon delimited list below
+  // "additional_includes": "/my/random/file/path;/another/path"
 }
