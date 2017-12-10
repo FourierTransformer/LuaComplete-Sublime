@@ -26,14 +26,14 @@ def start_server():
     if not is_server_running():
         # clean up any old instances that may be running...
         stop_server()
-        state["server"] = Popen("lua-complete server", shell=True)
+        state["server"] = Popen(state["server_command"], shell=True)
 
     # else:
         # print("LuaComplete: server already running")
 
-def stop_server():
+def stop_server():    
     # try to cleanly bring it down.
-    shutdown = Popen("lua-complete client -x", shell=True)
+    shutdown = Popen(state["client_command"] + " -x", shell=True)
     shutdown.wait(.5)
 
     # if the command fails, and it's still running. terminate it.
@@ -73,6 +73,8 @@ def create_completion(completion):
 
 class LuaComplete(sublime_plugin.EventListener):    
     def on_query_completions(self, view, prefix, locations):
+        global state
+
         position = locations[0]
         scopes = view.scope_name(position).split()
         if ('source.lua' not in scopes):
@@ -87,13 +89,29 @@ class LuaComplete(sublime_plugin.EventListener):
         if current_char not in [":", ".", "[", "("]:
             return None
 
-        # try this out:
-        fileContents = view.substr(sublime.Region(0, view.size())).encode('utf8')
-        client = Popen("lua-complete client -i -c " + str(position), shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
-        # print(fileContents)
+        # build the main command
+        command = "{client} -i -c {pos}".format(client=state["client_command"], pos=str(position))
+        
+        # append the filename if it exists
+        file_name = view.file_name()
+        if file_name is not None:
+            command = command + " -f '{0}'".format(file_name)
+
+        window_vars = view.window().extract_variables()
+        if "folder" in window_vars:
+            command = command + " -r '{0}'".format(window_vars["folder"])
+
+        # get the file contents
+        file_contents = view.substr(sublime.Region(0, view.size())).encode('utf8')
+        
+        # send it to the client
+        print(command)
+        client = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+        # print(file_contents)
         # print(position)
 
-        output = client.communicate(fileContents)[0].decode('utf-8')
+        # send communicate on stdin to the client
+        output = client.communicate(file_contents)[0].decode('utf-8')
         # print("returncode", client.returncode)
 
         if client.returncode == 0:
@@ -130,3 +148,11 @@ class ClearCacheCommand(sublime_plugin.ApplicationCommand):
 def plugin_loaded():
     global state
     state["settings"] = sublime.load_settings("LuaComplete.sublime-settings")
+
+    # strip out the path/port
+    path = state["settings"].get("path")
+    port = state["settings"].get("port")
+
+    # setup the command.
+    state["server_command"] = "{path} server -p {port}".format(path=path, port=port)
+    state["client_command"] = "{path} client -p {port}".format(path=path, port=port)

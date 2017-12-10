@@ -1,6 +1,8 @@
 {
-  // Path to the directory containing lua-completion executables
+  // Path to the directory containing lua-complete executables
+  // if installed everywhere, just "lua-complete" should be fine
   "path": "lua-complete",
-  // Port to use for lua-completion client and server
+
+  // Port to use for the lua-complete client and server
   "port": 24548
 }
