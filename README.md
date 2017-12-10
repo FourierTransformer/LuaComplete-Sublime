@@ -1,5 +1,6 @@
 # LuaComplete for Sublime Text 3 (BETA)
 LuaComplete is an ST3 plugin that does auto-completing of Lua code. It uses the [lua-complete](https://github.com/FourierTransformer/lua-complete) engine for auto-completion and makes your Lua development a lot easier!
+![Image of LuaComplete in Action](http://fouriertransformer.github.io/LuaComplete-Sublime/images/ftcsv-small.png)
 
 ## Installation
 1. Install [lua-complete](https://github.com/FourierTransformer/lua-complete#setup)
@@ -48,6 +49,9 @@ The LuaComplete plugin will show the difference between when it can fill in func
 ### Lua Function
 The Lua function parameters get auto-completed and in the Sublime Text auto-complete hover - the function is described as `function ()`:
 
+![Image of LuaComplete completing lua function parameters](http://fouriertransformer.github.io/LuaComplete-Sublime/images/dkjson.gif)
+
 ### C Function
 The C functions parameters don't get auto-completed and the function is described as `function`:
+![Image of LuaComplete completing lua function parameters](http://fouriertransformer.github.io/LuaComplete-Sublime/images/cjson.gif)
 
