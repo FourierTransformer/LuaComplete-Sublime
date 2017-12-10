@@ -5,11 +5,13 @@ LuaComplete is an ST3 plugin that does auto-completing of Lua code. It uses the 
 ## Installation
 1. Install [lua-complete](https://github.com/FourierTransformer/lua-complete#setup)
 
-2. Install the plugin. I'm working on a few more things before getting it in Package Control. Currently, you can only install if manually:
+2. Install the plugin. Currently, you can only install it manually:
     ```
     cd /Users/[user]/Library/Application Support/Sublime Text 3/Packages/
     git clone https://github.com/FourierTransformer/LuaComplete-Sublime LuaComplete
     ```
+
+    I'm working on a few more things before getting it in Package Control.
 
 3. That's about it! LuaComplete will start up the server and send code automatically via the client. There are a few settings that can be tweaked, as referenced below.
 
