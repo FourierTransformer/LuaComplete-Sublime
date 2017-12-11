@@ -57,3 +57,11 @@ The Lua function parameters get auto-completed and in the Sublime Text auto-comp
 The C functions parameters don't get auto-completed and the function is described as `function`:
 ![Image of LuaComplete completing lua function parameters](http://fouriertransformer.github.io/LuaComplete-Sublime/images/cjson.gif)
 
+## Troubleshooting
+If you see the error message "The lua-complete client failed to return" in the bottom right, try running the "LuaComplete: Clear Auto-complete Cache (Restart Server)" from the command palette. This will restart the server, and hopefully the client will be able to reconnect.
+
+## Questions and Contributing
+Feel free to open a Github issue with any questions/issues/features that you have! Also, check out [CONTRIBUTING.md](CONTRIBUTING.md) if you want to help!
+
+## Licenses
+LuaComplete is released under the [MIT License](LICENSE.md)
