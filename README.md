@@ -16,7 +16,7 @@ LuaComplete is an ST3 plugin that does auto-completing of Lua code. It uses the 
 3. That's about it! LuaComplete will start up the server and send code automatically via the client. There are a few settings that can be tweaked, as referenced below.
 
 ## Settings
-The default settings should work out of the box, but they can be modified via the Preferences menu or from the Command Palette (`Ctrl+Shift+P` and type LuaComplete). Make any changes in the User settings. Here are the default settings:
+The default settings should work out of the box, but they can be modified via the Preferences menu or from the Command Palette (`Ctrl+Shift+P` and type LuaComplete). Make any changes in the User settings. You will likely need to restart Sublime Text after changing settings. Here are the default settings:
 ```
 {
     // Path to the directory containing lua-complete executables
@@ -25,6 +25,12 @@ The default settings should work out of the box, but they can be modified via th
 
     // Port to use for the lua-complete client and server
     "port": 24548,
+
+    // enable/disable toggle. it is enabled by default
+    // you would set it to false to turn off LuaComplete
+    // "enabled": false,
+    // NOTE: it can also be toggled via the command palette 
+    // but will only apply until Sublime Text reboots
 
     // additional include location
     // by default lua-complete will search lua's regular 

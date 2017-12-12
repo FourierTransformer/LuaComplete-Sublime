@@ -22,6 +22,7 @@ def is_server_running(quick=False):
         return False
 
 def start_server():
+    global state
     # print("starting server")
     if not is_server_running():
         # clean up any old instances that may be running...
@@ -73,11 +74,10 @@ def create_completion(completion):
 
 class LuaComplete(sublime_plugin.EventListener):    
     def on_query_completions(self, view, prefix, locations):
-        global state
-
         position = locations[0]
         scopes = view.scope_name(position).split()
-        if ('source.lua' not in scopes):
+
+        if ('source.lua' not in scopes or state["enabled"] == False):
             return None
 
         # load the server if it's not running.
@@ -115,7 +115,7 @@ class LuaComplete(sublime_plugin.EventListener):
         file_contents = view.substr(sublime.Region(0, view.size())).encode('utf8')
         
         # send it to the client
-        print(command)
+        # print(command)
         client = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
         # print(file_contents)
         # print(position)
@@ -156,6 +156,16 @@ class ClearCacheCommand(sublime_plugin.ApplicationCommand):
         stop_server()
         start_server()
 
+class DisableCommand(sublime_plugin.ApplicationCommand):
+    def run(self):
+        global state
+        state["enabled"] = False
+
+class EnableCommand(sublime_plugin.ApplicationCommand):
+    def run(self):
+        global state
+        state["enabled"] = True
+
 def plugin_loaded():
     global state
     state["settings"] = sublime.load_settings("LuaComplete.sublime-settings")
@@ -168,9 +178,15 @@ def plugin_loaded():
     if port is None:
         port = 24548
 
+    # figure out if it's enabled
+    enabled = state["settings"].get("enabled")
+    if enabled is None:
+        enabled = True
+
     # setup the command.
     state["server_command"] = "{path} server -p {port}".format(path=path, port=port)
     state["client_command"] = "{path} client -p {port}".format(path=path, port=port)
+    state["enabled"] = enabled
 
     # get any additional include locations
     state["additional_includes"] = state["settings"].get("additional_includes")

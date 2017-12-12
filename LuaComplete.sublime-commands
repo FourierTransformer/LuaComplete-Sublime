@@ -4,6 +4,14 @@
         "command": "clear_cache"
     },
     {
+        "caption": "LuaComplete: Disable",
+        "command": "disable"
+    },
+    {
+        "caption": "LuaComplete: Enable",
+        "command": "enable"
+    },
+    {
         "caption": "Preferences: LuaComplete Settings – Default",
         "command": "open_file", "args":
         {
