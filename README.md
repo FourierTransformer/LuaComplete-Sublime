@@ -26,11 +26,12 @@ The default settings should work out of the box, but they can be modified via th
     // Port to use for the lua-complete client and server
     "port": 24548,
 
-    // enable/disable toggle. it is enabled by default
-    // you would set it to false to turn off LuaComplete
-    // "enabled": false,
-    // NOTE: it can also be toggled via the command palette 
-    // but will only apply until Sublime Text reboots
+    // enable/disable toggle. it is enabled by default 
+    // set it to false to turn off LuaComplete
+    // and restart Sublime Text for it to take effect
+    // "enabled": true,
+    // NOTE: it can also be enabled/disabled via the command palette 
+    // but will only stick until the next Sublime Text reboot
 
     // additional include location
     // by default lua-complete will search lua's regular 
