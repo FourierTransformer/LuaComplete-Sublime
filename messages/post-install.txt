@@ -1,0 +1,8 @@
+Please ensure you have installed lua-complete (BETA) from luarocks for this plugin to work:
+
+luarocks install --server=http://luarocks.org/dev lua-complete
+
+Check out the GitHub Page for more info and to report any issues:
+https://github.com/FourierTransformer/LuaComplete-Sublime
+
+Thanks for installing LuaComplete!
