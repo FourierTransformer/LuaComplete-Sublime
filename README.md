@@ -1,4 +1,13 @@
-# LuaComplete for Sublime Text 3 (BETA)
+# Deprecated: LuaComplete for Sublime Text 3
+LuaComplete is no longer being worked on. There are numerous other lua code completion tools out there (with actual language-server support!)
+
+Alternatives to take a look at:
+
+    https://github.com/sumneko/lua-language-server
+    https://github.com/EmmyLua/EmmyLua-LanguageServer
+
+
+# Original README below
 LuaComplete is an ST3 plugin that does auto-completing of Lua code. It uses the [lua-complete](https://github.com/FourierTransformer/lua-complete) engine for auto-completion and makes your Lua development a lot easier!
 ![Image of LuaComplete in Action](http://fouriertransformer.github.io/LuaComplete-Sublime/images/ftcsv-small.png)
 
