@@ -2,9 +2,8 @@
 LuaComplete is no longer being worked on. There are numerous other lua code completion tools out there (with actual language-server support!)
 
 Alternatives to take a look at:
-
-    https://github.com/sumneko/lua-language-server
-    https://github.com/EmmyLua/EmmyLua-LanguageServer
+ * https://github.com/sumneko/lua-language-server
+ * https://github.com/EmmyLua/EmmyLua-LanguageServer
 
 
 # Original README below
